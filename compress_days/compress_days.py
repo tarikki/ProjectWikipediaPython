@@ -22,10 +22,10 @@ def uncompress_and_save(file, destination_directory):
 
 
 if __name__ == '__main__':
-    path ="/media/extradikke/UbuntuData/wikipedia_data/january"
+    path ="/media/extradikke/UbuntuData/wikipedia_data/viewCounts/"
     destination_d = "/media/extradikke/FastFiles/wikidata/1/"
     files = [file for file in os.listdir(path)]
     print(files)
     file = path+ "/" + files[0]
     print(file)
-    uncompress_and_save(file, destination_d)
+    # uncompress_and_save(file, destination_d)

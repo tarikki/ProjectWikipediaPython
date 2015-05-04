@@ -1,7 +1,8 @@
 __author__ = 'extradikke'
 
-with open("/media/extradikke/UbuntuData/wikipedia_data/data_dump/dataMaps/article_name_to_number.txt") as bigFile, open(
-        "/media/extradikke/UbuntuData/wikipedia_data/data_dump/articles_processed_pruned3.txt",
+with open("/media/extradikke/UbuntuData/wikipedia_data/wikidump_processed/articles_to_numbers.txt",
+          mode='r') as bigFile, open(
+        "/media/extradikke/FastFiles/wikidata/articles_processed_no_redirects.txt",
         mode='r') as articles:
     names_to_numbers = dict()
     for line in bigFile:
@@ -14,11 +15,10 @@ with open("/media/extradikke/UbuntuData/wikipedia_data/data_dump/dataMaps/articl
         for item in items:
             links += 1
             if item.lower() not in names_to_numbers:
-                print(item)
+                # print(item)
                 orphans += 1
-            if orphans % 500 == 0:
-                break
-                print(links, orphans, 100*orphans/links)
-        print(links, orphans, 100*orphans/links)
+            if orphans % 50000 == 0:
+                print(links, orphans, 100 * orphans / links)
+        print("Total links: %d, orphans: %d, percentage: %.2f" % (links, orphans, 100 * orphans / links))
 
 

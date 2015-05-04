@@ -1,11 +1,11 @@
 __author__ = 'extradikke'
 
-with open("/media/extradikke/UbuntuData/wikipedia_data/data_dump/articles_processed_pruned3.txt",
-          mode='r') as file, open("/media/extradikke/UbuntuData/wikipedia_data/data_dump/dataMaps/article_name_to_number.txt", mode='w') as destination:
+with open("/media/extradikke/FastFiles/wikidata/articles_processed_no_redirects.txt",
+          mode='r') as file, open("/media/extradikke/UbuntuData/wikipedia_data/wikidump_processed/articles_to_numbers.txt", mode='w') as destination:
     article_names = []
     count = 0
     for line in file:
-        name = line.split("|")[0].strip("\n").lower()
+        name = line.split("|")[0].strip()
         count += 1
         article_names.append(name)
         if count % 50000 == 0:
@@ -14,7 +14,7 @@ with open("/media/extradikke/UbuntuData/wikipedia_data/data_dump/articles_proces
     name_counter = 1
     name_and_number = []
     for name in article_names:
-        mapping = name.strip("\n") + "|" + str(name_counter) + "\n"
+        mapping = name.strip() + "|" + str(name_counter) + "\n"
         name_and_number.append(mapping)
         destination.write(mapping)
         name_counter += 1

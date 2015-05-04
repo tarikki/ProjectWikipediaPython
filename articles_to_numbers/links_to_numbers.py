@@ -1,11 +1,11 @@
 __author__ = 'extradikke'
 import time
 
-with open("/media/extradikke/UbuntuData/wikipedia_data/data_dump/articles_processed_pruned3.txt",
+with open("/media/extradikke/FastFiles/wikidata/articles_processed_no_redirects.txt",
           mode="r") as source, open(
-        "/media/extradikke/UbuntuData/wikipedia_data/data_dump/dataMaps/article_name_to_number.txt",
+        "/media/extradikke/UbuntuData/wikipedia_data/wikidump_processed/articles_to_numbers.txt",
         mode="r") as mapping, open(
-        "/media/extradikke/UbuntuData/wikipedia_data/data_dump/dataMaps/wiki_in_numbers.txt", mode="w") as entire_wiki:
+        "/media/extradikke/UbuntuData/wikipedia_data/wikidump_processed/wiki_in_numbers.txt", mode="w") as entire_wiki:
     start = time.time()
     name_number = {key.strip("\n"): value.strip("\n") for (key, value) in [line.split("|") for line in mapping]}
     print("Time to load mappings", time.time() - start)
@@ -24,7 +24,7 @@ with open("/media/extradikke/UbuntuData/wikipedia_data/data_dump/articles_proces
         if index % 50000 == 0:
             print(index)
 
-
+    print("Took %.2f seconds to finish mapping" % (time.time()-start))
     # for index, key in enumerate(name_number):
     #     print(key, name_number[key])
     #     if index > 5:
